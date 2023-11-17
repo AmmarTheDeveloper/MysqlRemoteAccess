@@ -116,13 +116,13 @@ REVOKE ALL PRIVILEGES ON database_name.* FROM username@"host"
 ### MySQL Configuration
 we have do some configuration in mysql for giving remote access of our database.
 #### Steps For Mysql Configuration
-> 1.Open File Explorer And On TaskBar Click On View Then Check The Hidden Files Checkbox\
+> 1. Open File Explorer And On TaskBar Click On View Then Check The Hidden Files Checkbox\
 
-> 2.Then Open  ProgramData Folder Present In C: Drive
+> 2. Then Open  ProgramData Folder Present In C: Drive
 
-> 3.Then Open MySqL Folder Then Go To MySQL Server Folder Then Find my.ini File
+> 3. Then Open MySqL Folder Then Go To MySQL Server Folder Then Find my.ini File
 
-> 4.Then Open It In notepad++(Run Notepad as administrator)
+> 4. Then Open It In notepad++(Run Notepad as administrator)
 
 > 5. Then Find [mysqld] in my.ini File After Opening
 
@@ -141,7 +141,7 @@ go to another machine(Laptop Or Pc) from which you are going to access the datab
 
 > 1. Find This Folder In Your Computer "C:\Program Files\MySQL\MySQL Server *.*\bin" (here * is your mysql version) Copy That Location
 
-> 2.  Write This Command In Cmd cd **"C:\Program Files\MySQL\MySQL Server 8.0\bin"**
+> 2. Write This Command In Cmd cd **"C:\Program Files\MySQL\MySQL Server 8.0\bin"**
 
 > 3. Perform This Command
 
