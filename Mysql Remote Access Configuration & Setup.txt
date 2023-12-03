@@ -1,0 +1,86 @@
+Mysql Remote Access Setup and Configuration
+1) First we have to create a root or superUser for mysql . but we don't need to create it because when we download mysql by default it is created named as root.
+SuperUser : 
+a user that has all access to grant permissions to access any other user to the database or perform queries on particular database or table or on all databases or all tables or only peroform particular query on a database or table . like select , delete , update etc.
+
+2) for Remote accessing our database first we need to create a user in mysql so here is a query for creating a user in mysql
+query : CREATE  USER username@"host"  IDENTIFIED BY password.
+explanation : 
+here  username is the username of the user is going to be created.
+here host is a ip or host of the user from where it will going to access the database. if we want to give access from any device to access my database use "%" at the place of host. or if we want to give a access on particular machine so pass there the laptops
+ ip address.
+and at the place of the password we write password from that password our database will be accessed
+
+3) we have seen how to create a user now we have check our user is created or not. for checking we have following query.
+mysql have predefined database named as mysql. in mysql database we have predefined table named as user. where our users details are stored.
+
+so run following query for checking user is created or not.
+
+use mysql;
+select user, host  from user;
+or directly we can use following query :
+select user, host from mysql.user;
+
+we can't see password because it is stored in hashing technique . if we want to see password then use this command
+select user , host , authenticaiton_string from mysql.user;
+
+4) we have seen how to create a user and see it is created or not. now  we have to see how can we give permission to a particular user  to access my database so for that we have grant command for giving access of our particular database  or table.
+query for giving all query access on a particular database and it's  all tables
+query :
+GRANT ALL PRIVILEGES ON database.* TO user@"host"
+here all privileges means this user have to perform all queries on databases all tables
+here host is  the host  which we have provided when we have created our user.
+
+database.* means a  particular database all tables.
+if we want to give database particular table access we  use this at the place of database.*
+database.tablename.
+
+for giving a particular query access on a user we perform this command.
+GRANT SELECT , UPDATE on database.* TO user@"host"
+
+you can see all privileges of mysql here : https://dev.mysql.com/doc/refman/8.0/en/privileges-provided.html
+
+then we perform this command 
+FLUSH PRIVILEGESE;
+what does this  command?
+ans : reloads the grant tables in the mysql database enabling the changes to take effect without reloading or restarting mysql service.
+
+5) now we have granted permission to a user now we have to check it is worked or not.
+For That We Perform This Command : 
+SHOW GRANTS FOR user@"host";
+
+6) if we want to get back permission from a user we use revoke  command.
+query : REVOKE all privileges on database.table_name from user@"host"
+	OR
+	REVOKE select , update on database.table_name from user@"host"
+	OR
+	REVOKE all privileges on database.* from user@"host"
+7) if we want to delete a user we use this command :
+DROP USER user@"host"
+
+8) now we have do some configuration in mysql for that follow following steps:
+(this is for windows only)
+1) first set as view  hidden file to checked in file
+2) in c drive  go to programData folder then goto mysql then go to MYSQL SERVER folder then you find my.ini file  open it in notepad++
+then you find [mysqld] 
+at the next line of [mysqld] if it is present then update it else add this line
+bind-address=0.0.0.0
+
+then save it. if notpad++ is not opened as the administrator then it ask for permission else it will saved then close it.
+
+9)Then go to another machine from which you are going to access the database.
+   OPEN CMD IN THAT MACHINE.
+   then open your file explorer. open program files  then open mysql folder then go to mysql server then go to bin.
+then copy this path and paste it in cmd like this.
+cd "C:\Program Files\MySQL\MySQL Server 8.0\bin"
+then perform this command.
+mysql -u username -h "host"  -p password then  enter
+then it will ask again for password enter  the  password
+here host is the ipaddress of the machine where database is actually present.
+
+NOW YOU KNOW HOW TO REMOTE ACCESS  MYSQL.
+
+**************************************** THANK YOU ***************************************
+
+
+
